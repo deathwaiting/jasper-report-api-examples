@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: .
+      args:
+        POSTGRES_PORT: 5432
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: postgres
+        DOCKER_IMAGE_TAG: sample-db
+    ports:
+      - "5432:5432"
+    networks:
+      - appnetwork
+
+  report-server:
+    image: registry.gitlab.com/a.galal7/jasper-reports-api:0.1
+    environment:
+      SPRING_PROFILES_ACTIVE: security-off
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8080:8080"
+    volumes:
+      - test_reports:/var/reports
+    networks:
+      - appnetwork
+    depends_on: 
+      - db
+
+networks:
+  appnetwork:
+    driver: bridge
+
+volumes:
+  test_reports:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./reports
