@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="movie_book" pageWidth="595" pageHeight="842" sectionType="Part" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="d2716064-8ae4-40cf-a575-33afba400e3a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="local-postgres.jrdax"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="true"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select count(*) from movies]]>
+	</queryString>
+	<field name="count" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="count"/>
+		<property name="com.jaspersoft.studio.field.label" value="count"/>
+	</field>
+	<detail>
+		<part uuid="37870a26-58d8-4567-9b03-3f45bf9a888b">
+			<p:subreportPart xmlns:p="http://jasperreports.sourceforge.net/jasperreports/parts" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/parts http://jasperreports.sourceforge.net/xsd/parts.xsd">
+				<subreportParameter name="REPORT_CONNECTION">
+					<subreportParameterExpression><![CDATA[$P{REPORT_CONNECTION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["movies.jasper"]]></subreportExpression>
+			</p:subreportPart>
+		</part>
+		<part uuid="cbc61b70-9510-4bd8-b06a-8f8a543580aa">
+			<p:subreportPart xmlns:p="http://jasperreports.sourceforge.net/jasperreports/parts" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/parts http://jasperreports.sourceforge.net/xsd/parts.xsd">
+				<subreportParameter name="REPORT_CONNECTION">
+					<subreportParameterExpression><![CDATA[$P{REPORT_CONNECTION}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["movies_summary.jasper"]]></subreportExpression>
+			</p:subreportPart>
+		</part>
+	</detail>
+</jasperReport>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl">
+  <name>local-postgres</name>
+  <driver>org.postgresql.Driver</driver>
+  <username>postgres</username>
+  <password>postgres</password>
+  <url>jdbc:postgresql://localhost:5432/postgres</url>
+  <database></database>
+  <savePassword>true</savePassword>
+  <serverAddress></serverAddress>
+</jdbcDataAdapter>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="movies_summary" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="135a609a-7e8f-4e64-a6f4-5c3c46098aeb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="local-postgres.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<subDataset name="best-movie" uuid="2aa76bf5-6a07-48f2-b5c9-b57ca66ccfc1">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="local-postgres.jrdax"/>
+		<queryString language="SQL">
+			<![CDATA[select title from movies
+where id = (select id from movies order by popularity desc limit 1)]]>
+		</queryString>
+		<field name="title" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="title"/>
+			<property name="com.jaspersoft.studio.field.label" value="title"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="movies"/>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[select count(id) from movies]]>
+	</queryString>
+	<field name="count" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="count"/>
+		<property name="com.jaspersoft.studio.field.label" value="count"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="60" uuid="1251dbe3-954d-4105-ab0f-b886083b1d8d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Movie Stats]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="336" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<staticText>
+				<reportElement x="0" y="0" width="140" height="20" uuid="19c12335-0b0d-4cb3-a9f6-6801d1d7ab6e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Most popular movie: ]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="140" y="4" width="415" height="30" uuid="90937cd1-b114-45bd-90fd-44cdd9ffaed2"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="best-movie" uuid="dc628589-d9cb-4c2f-aa97-fb8cbe6a0ca5">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="415">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="30" uuid="820f58ab-cf2a-4112-95ad-0ad934ea2373"/>
+							<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>
