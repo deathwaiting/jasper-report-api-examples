@@ -8,8 +8,8 @@
 	<classpathentry kind="con" path="net.sf.jasperreports.JR_CONTAINER"/>
 	<classpathentry kind="con" path="com.jaspersoft.server.JRS_CONTAINER"/>
 	<classpathentry kind="lib" path="ex3/smooth-circulars.jar"/>
-	<classpathentry kind="lib" path="common/cairo-font.jar"/>
 	<classpathentry kind="lib" path="common/jaserreports-arabic-1.0.jar"/>
-	<classpathentry kind="lib" path="common/reem-kufi.jar"/>
+	<classpathentry kind="lib" path="common/noto-naksh.jar"/>
+	<classpathentry kind="lib" path="common/noto-kufi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

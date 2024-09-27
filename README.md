@@ -49,3 +49,14 @@ curl -o movies.pdf http://localhost:8080/report/ex2/movies.pdf
 ```shell
 curl -o movie_book.pdf http://localhost:8080/report/ex3/movie_book.pdf?JR_force-compile=true
 ```
+
+## Example 4: A Report in Arabic language
+
+- To produce high quality reports in Arabic, specially in pdf format we need some tweeks
+- first we need better fonts, as the fonts provided by jasper doesn't produce arabic text with good quality, and some doesn't support arabic.
+- Also to show the number in hinid numerals, which are used in the Arabic language we need to use a customer `FormatFactory` and use some utils for converting numerals in strings
+- In this test we use open fonts provided by google's Noto family that produces higher quality text, and to handle the numerals we use [jasperreports-arabic](https://github.com/deathwaiting/japerreports-arabic)
+
+```shell
+curl -o arabic-report.pdf http://localhost:8080/report/ex4/arabic-report.pdf
+```

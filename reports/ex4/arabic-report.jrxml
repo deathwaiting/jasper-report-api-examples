@@ -2,20 +2,25 @@
 <!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="arabic-report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" formatFactoryClass="dev.galal.jasperreports.arabic.HindiNumeralsFormatFactory" uuid="96738273-42ec-4f48-99bf-92f6fc3dfe0e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="local-postgres.jrdax"/>
 	<property name="net.sf.jasperreports.default.locale" value="ar_EG"/>
+	<import value="dev.galal.jasperreports.arabic.HindiNumeralsUtils"/>
 	<queryString language="SQL">
-		<![CDATA[select 1 from address]]>
+		<![CDATA[select 1]]>
 	</queryString>
+	<field name="?column?" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="?column?"/>
+		<property name="com.jaspersoft.studio.field.label" value="?column?"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="190" splitType="Stretch">
+		<band height="276" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="555" height="70" uuid="4b28515c-24db-4e44-9370-75f9af355b3f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="ReemKufi" size="34" isBold="false"/>
+					<font fontName="NotoNaksh" size="34" isBold="false"/>
 				</textElement>
 				<text><![CDATA[بسم الله الرحمن الرحيم]]></text>
 			</staticText>
@@ -23,53 +28,60 @@
 				<reportElement x="0" y="80" width="555" height="40" uuid="44d574a8-d4cf-4d36-9175-68275e9d54df"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Cairo" size="20" isBold="true"/>
+					<font fontName="NotoKufi" size="20" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["تقرير باللغة العربية بإستخدام جاسبر نسخة 6.20 "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[HindiNumeralsUtils.toHindiNumerals("تقرير باللغة العربية بإستخدام جاسبر نسخة 6.20 ")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="355" y="120" width="100" height="30" uuid="7073b545-24a2-4ca6-b802-c346a61e129b"/>
+				<reportElement x="200" y="213" width="355" height="30" uuid="3a2f2810-f93c-4a21-ad75-fe7cb64f98a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="NotoKufi" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[HindiNumeralsUtils.toHindiNumerals("مثال على وصف قيمة مالية ل 123.45 جنيه :  ")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="243" width="544" height="30" uuid="12e8256e-b08c-41a6-acff-004822b20800"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Cairo" isBold="false"/>
+					<font fontName="NotoKufi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[dev.galal.jasperreports.arabic.MonetaryValue.inArabic(new BigDecimal("123.45"), dev.galal.jasperreports.arabic.MonetaryValue.Currency.EGP)]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<textField pattern="dd MMMMM , yyyy">
+				<reportElement x="0" y="40" width="100" height="30" uuid="ab44085c-24c5-43b7-926f-1c9b39fd004f"/>
+				<textElement>
+					<font fontName="NotoKufi" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="40" width="100" height="30" uuid="37c44ac2-3036-4cc7-b4a2-0f8cff1bfe34"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="NotoKufi" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.LocalDate.now().getYear()]]></textFieldExpression>
 				<patternExpression><![CDATA["####"]]></patternExpression>
 			</textField>
 			<staticText>
-				<reportElement x="455" y="120" width="100" height="30" uuid="1fa1fda2-9864-441f-b313-c111da897813"/>
+				<reportElement x="454" y="40" width="100" height="30" uuid="bc2a4a12-46ae-4a35-9264-a34e916fd62e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="ReemKufi" isBold="true"/>
+					<font fontName="NotoKufi" isBold="true"/>
 				</textElement>
 				<text><![CDATA[سنة إصدار التقرير : ]]></text>
 			</staticText>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="58" splitType="Stretch">
-			<textField pattern="dd MMMMM , yyyy">
-				<reportElement x="0" y="0" width="100" height="30" uuid="ab44085c-24c5-43b7-926f-1c9b39fd004f"/>
-				<textElement>
-					<font fontName="Cairo" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageHeader>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="180" y="0" width="100" height="30" uuid="e1fc5086-c25b-4c53-9ab8-9c05a93215e4"/>
+				<reportElement x="230" y="0" width="100" height="30" uuid="e1fc5086-c25b-4c53-9ab8-9c05a93215e4"/>
 				<textElement textAlignment="Right">
-					<font fontName="Cairo" isBold="false"/>
+					<font fontName="NotoKufi" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="280" y="0" width="100" height="30" uuid="5ea68266-1d78-4732-9f59-8340b86b014f"/>
-				<textElement textAlignment="Left">
-					<font fontName="Cairo" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[HindiNumeralsUtils.toHindiNumerals( $V{PAGE_NUMBER} + " / " + $V{PAGE_COUNT})]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
